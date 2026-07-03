@@ -14,7 +14,7 @@ First, let's cover the fundamental building blocks of the mimosa language.
 
 **It's time to change syntax of programming languages**
 
-* **First: New Assignment Operator:** The most significant change is the assignment operator. Instead of `variable = value`, mimosa uses `value : variable`. This allows for a natural left-to-right flow mimicking handwriting. For example: `a + b : a`.
+* **First: New Assignment Operator:** The most significant change is the assignment operator. Instead of ` variable = value `, mimosa uses ` value : variable `. This allows for a natural left-to-right flow mimicking handwriting. For example: ` a + b : a `. Notice: assignment operator and variable declaration look the same: ` i : int `
 
 * **Second: Renamed Keywords:** 
   * if - when
@@ -44,8 +44,8 @@ It also supports standard arithmetic operators: `+`, `-`, `*`, `/`, and `%` (mod
 
 You can declare a variable with or without an initial value
 
-* **Declaration only:** `i : int`
-* **Declaration with initialization:** `i(0) : int` (i becomes 0)  , `x(1.5) : float` , `c("a") : char`  , `l(true) : bool`  , `s("abcde") : string` .
+* **Declaration only:** ` i : int `
+* **Declaration with initialization:** ` i(0) : int ` (i becomes 0)  , ` x(1.5) : float ` , ` c("a") : char `  , ` l(true) : bool `  , ` s("abcde") : string ` .
 
 \---
 
@@ -71,7 +71,7 @@ Function declarations are also reversed to fit the left-to-right flow .
 
 * **Syntax:** `fun| <function_name>(<input_parameters >) : <return_type>`
 * **Example:** `fun| Euclid(a : int, b : int) : int`   (This declares a function named `Euclid` that takes two `int` parameters and returns an `int` ).
-* **Calling a function:** `f(a, b)`
+* **Calling a function:** `Euclid(a, b)`
 
 ### The `main` Function
 
@@ -152,8 +152,8 @@ repeat| b!= 0
 * We use vectors instead of arrays because they are more efficient
 * Notice | | brackets instead of [ ]
 
-  * **Declaration:** `a|n| : int` (declares an integer vector with `n` elements).
-  * **Initialization:** `a|4|(|1, 2, 3, 4|) : int`.
+  * **Declaration:** ` a|n| : int ` (declares an integer vector with ` n ` elements).
+  * **Initialization:** ` a|4|(|1, 2, 3, 4|) : int `.
   * **Access:** `a|i|` (0-based indexing).
 
 ### Loop: `iterate|`
@@ -163,9 +163,9 @@ mimosa has a specific syntax for `iterate| ..  |iterate` loops .
 * **Syntax:** `iterate| i(0)++ < n`
 * **Explanation:**
 
-  * `i(0)`: The iterator `i` is declared and initialized to 0 .
-  * `++`: The iteration step is by 1 .
-  * `< n`: The loop continues as long as `i` is less than `n` .
+  * ` i(0) `: The iterator ` i ` is declared and initialized to 0 .
+  * ` ++ `: The iteration step is by 1 .
+  * ` < n `: The loop continues as long as ` i ` is less than ` n ` .
 
 Here is an example of a `iterate| .. |iterate` loop used to populate an vector:
 
@@ -250,7 +250,7 @@ comp| primes
 
 
 
-This example demonstrates vector manipulation (e.g., `false : primes|first|`), nested loops (`repeat|` inside `repeat|`  ), and sending formatted output to the console (e.g., `'\\n'-> out` ).
+This example demonstrates vector manipulation (e.g., `false : primes|first|`), nested loops (`repeat|` inside `repeat|`  ), and sending formatted output to the console (e.g., ` '\\n'-> out ` ).
 
 \---
 
@@ -260,7 +260,7 @@ mimosa also supports classes, allowing for object-oriented design.
 
 * **Declaration:** `class| ClassName ... |class`.
 * **Members:** You can define data members (e.g., `a : int, b : int`)   and member functions (e.g., `fun| Euclid...`)  inside a class.
-* **Object Creation:** ` N : GCD` creates an instance (object) `N` of the class `GCD`.
+* **Object Creation:** ` N : GCD ` creates an instance (object) `N` of the class `GCD`.
 * **Access:** Members are accessed using the dot operator (e.g., `N.a`, `N.Euclid`).
 
 ### Example 3: `GCD` Class
@@ -347,7 +347,7 @@ comp| Euclidean
 
 ```
 
-In the beginning intermodular gives component access to standard I/O and then access to functions of another component. Then there is declaration of function that can be used by another component. Notice that source code extension of mimosa components is `.mimo`
+In the beginning intermodular gives component access to standard I/O and then access to functions of another component. Then there is declaration of function that can be used by another component. Notice that source code extension of mimosa components is ` .mimo `
 
 
 
@@ -394,9 +394,9 @@ This language utilizes C++ like generics
 
 comp| generics
 
-template| type Iter, type Val, type Op |template
+template| Iter : type, Val : type, Op : type |template
 
-fun| connect(Iter first, Iter last, Val s, Op operator) : Val       
+fun| connect(first : Iter, last : Iter, s : Val, operator : Op) : Val       
 
     repeat| first != last
 
@@ -411,17 +411,17 @@ fun| connect(Iter first, Iter last, Val s, Op operator) : Val
 |fun
 
 
-fun|  main( args|| : string ) : int
+fun|  main(args|| : string) : int
 
     vec|4| (|1,2,3,4|) : float      // vector with 4 elements
 
-    float connect(vec, vec + 4, 0.0, +) : s1   // finding sum of floats, sum initialization 0.0
+    connect(vec, vec + 4, 0.0, +) : s1 : float   // finding sum of floats, sum initialization 0.0
 
-    float connect(vec, vec + 4, 0, + ) : s2      // finding sum of integers, sum initialization 0
+    connect(vec, vec + 4, 0, + ) : s2 :  float     // finding sum of integers, sum initialization 0
 
-    float connect(vec, vec + 4, 1.0, * ) : s3   // finding product of floats, product  initialization 1.0
+    connect(vec, vec + 4, 1.0, * ) : s3 :  float  // finding product of floats, product  initialization 1.0
 
-    float connect(vec, vec + 4, 1, * ) : s4   // finding product of integers, product initialization 1
+    connect(vec, vec + 4, 1, * ) : s4 :  float  // finding product of integers, product initialization 1
 
 |fun
 
@@ -439,7 +439,7 @@ Here you can see usage of generics for **different types**: ` float ` and ` inte
 
 ```mimosa
 
- tasks||: Multiplex       //vector of tasks for running together
+tasks||: Multiplex       //vector of tasks for running together
 
 function1(a, b) : tasks|0|     //list of fuctions for each task
 function2 (i, n) : tasks|1|
