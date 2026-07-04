@@ -4,6 +4,8 @@ Welcome to the specifications of the **mimosa programming language**. These spec
 
 **mimosa** is designed with a primary goal: to make **AI coding** easier, much like natural writing. This is achieved through a few core syntactical changes that streamline the AI development process
 
+Current programming languages were built optimized for the human brain's context window. I'm suggesting here designing entirely new intermediate language **optimized strictly for LLMs** rather than human readability
+
 \---
 
 ## 1\. The Basics: Syntax \& Variables
